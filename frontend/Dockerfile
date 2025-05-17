@@ -1,13 +1,9 @@
-# Build stage
-FROM node:21.2.0 AS build
+FROM node:21.2.0
+
 WORKDIR /app
 COPY frontend/package*.json ./
 RUN npm install
-COPY frontend/. .
-RUN npm run build
 
-# Serve stage
-FROM nginx:alpine
-COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+COPY frontend/. .
+
+CMD ["npm", "run", "dev"]

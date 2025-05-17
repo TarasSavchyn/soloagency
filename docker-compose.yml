@@ -1,36 +1,36 @@
 version: "3.4"
 
 services:
-  backend:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./backend:/app
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8080"
-    env_file:
-      - backend/.env
-    depends_on:
-      - db
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U myuser -d mydb"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
-
-  frontend:
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    volumes:
-      - ./frontend:/app
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: backend/Dockerfile
+#    ports:
+#      - "8080:8080"
+#    volumes:
+#      - ./backend:/app
+#    command: sh -c "python manage.py migrate && python manage.py populate_test_data && python manage.py runserver 0.0.0.0:8080"
+#    env_file:
+#      - backend/.env
+#    depends_on:
+#      - db
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U myuser -d mydb"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+#      start_period: 10s
+#
+#  frontend:
+#    build:
+#      context: .
+#      dockerfile: frontend/Dockerfile
+#    volumes:
+#      - ./frontend:/app
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      - backend
 
   db:
     image: postgres:15
