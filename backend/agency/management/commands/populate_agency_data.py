@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
 from agency.models import Service, Agency, Article, EventType, Organizer, Advice
-from user.models import User
 from django.core.files.base import ContentFile
 from io import BytesIO
 from PIL import Image

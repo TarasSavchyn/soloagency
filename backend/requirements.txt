@@ -47,4 +47,8 @@ urllib3==2.1.0
 utils==1.0.2
 Faker==37.3.0
 
+cloudinary>=1.36.0
+django-cloudinary-storage>=0.3.0
+python-decouple>=3.8
+
 

@@ -44,9 +44,7 @@ class Service(models.Model):
     name = models.CharField(max_length=63)
     description = models.TextField(max_length=511)
 
-    presentation = models.FileField(
-        upload_to=service_presentation_pdf_file_path, null=True, blank=True
-    )
+    models.FileField(upload_to='pdfs/', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -74,9 +72,7 @@ class Agency(models.Model):
 class EventType(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(max_length=255)
-    photo = models.ImageField(
-        upload_to=event_type_photo_file_path,
-    )
+    photo = models.ImageField(upload_to='avatars/')
 
     def __str__(self):
         return self.name
@@ -220,9 +216,7 @@ class CallRequest(models.Model):
 
 class Portfolio(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    photo = models.ImageField(
-        upload_to=portfolio_photo_file_path,
-    )
+    photo = models.ImageField(upload_to='avatars/')
     description = models.TextField(max_length=1023)
     title = models.CharField(max_length=120)
 

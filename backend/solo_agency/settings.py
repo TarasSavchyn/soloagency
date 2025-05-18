@@ -1,7 +1,10 @@
 import os
 from pathlib import Path
 
+import cloudinary
 from dotenv import load_dotenv, find_dotenv
+
+from decouple import config
 
 load_dotenv(find_dotenv())
 
@@ -39,6 +42,8 @@ INSTALLED_APPS = [
     "user.apps.UserConfig",
     "agency.apps.AgencyConfig",
     "drf_spectacular",
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +93,16 @@ DATABASES = {
         "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
+
+
+cloudinary.config(
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret=os.environ.get("CLOUDINARY_API_SECRET"),
+    secure=True
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # Password validation
