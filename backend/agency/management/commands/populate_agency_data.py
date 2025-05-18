@@ -16,11 +16,13 @@ class Command(BaseCommand):
     def populate_services(self):
         if not Service.objects.exists():
             Service.objects.create(
-                name="Організація весіль",
+                name="Організація",
                 description="Повний супровід події: від сценарію до реалізації.",
             )
             Service.objects.create(
-                name="Корпоративи", description="Свята для компаній під ключ."
+                name="Координація",
+                description="Координація процесу святкування."
+
             )
             self.stdout.write(self.style.SUCCESS("Services створено"))
         else:
